@@ -16,14 +16,14 @@ $scope.cleanall = function(){
 };
 
 // Obtenemos todos los datos de la base de datos
-$http.get('http://'+ dir +':3000/api/subject').success(function(data) {
+$http.get('http://'+ dir +':3001/api/subject').success(function(data) {
         $scope.subjects = data;
     })
     .error(function(data) {
         console.log('Error: ' + data);
     });
 $scope.GetAll = function() {
-	$http.get('http://'+ dir +':3000/api/subject').success(function(data) {
+	$http.get('http://'+ dir +':3001/api/subject').success(function(data) {
         $scope.subjects = data;
     })
     .error(function(data) {
@@ -34,7 +34,7 @@ $scope.GetAll = function() {
     // Función para filtrar por alumno
     $scope.filterSubject = function(res) {
 
-        $http.post('http://'+ dir +':3000/api/sub', $scope.newSubject)
+        $http.post('http://'+ dir +':3001/api/sub', $scope.newSubject)
             .success(function (data) {
                 if (data==false) {
                     alert("Al alumno que busca no se le ha asociado a ninguna asignatura");
@@ -53,7 +53,7 @@ $scope.GetAll = function() {
 	// Función para filtrar por asignatura
     $scope.filterName = function(res) {
 
-        $http.post('http://'+ dir +':3000/api/subject', $scope.newSubject)
+        $http.post('http://'+ dir +':3001/api/subject', $scope.newSubject)
             .success(function (data) {
                 if (data==false) {
                     alert("La asignatura que busca aún no ha sido creada");
@@ -72,7 +72,7 @@ $scope.GetAll = function() {
 // Función para registrar una asignatura
 $scope.registrarSubject = function(res) {
     
-        $http.post('http://'+ dir +':3000/api/subject', $scope.newSubject)
+        $http.post('http://'+ dir +':3001/api/subject', $scope.newSubject)
             .success(function (data) {
                 
                 if (data == false)
@@ -98,7 +98,7 @@ $scope.registrarSubject = function(res) {
 
 // Función para editar los datos de una asignatura
 $scope.modificarSubject = function(newSubject) {
-    $http.put('http://'+ dir +':3000/api/subject/' + $scope.newSubject._id, $scope.newSubject)
+    $http.put('http://'+ dir +':3001/api/subject/' + $scope.newSubject._id, $scope.newSubject)
         .success(function(data) {
             $scope.cleanall(); // Borramos los datos del formulario
             $scope.subjects = data;
@@ -111,7 +111,7 @@ $scope.modificarSubject = function(newSubject) {
 
 // Función que borra un objeto asignatura conocido su id
 $scope.borrarSubject = function(newSubject) {
-    $http.delete('http://'+ dir +':3000/api/subject/' + $scope.newSubject._id)
+    $http.delete('http://'+ dir +':3001/api/subject/' + $scope.newSubject._id)
         .success(function(data) {
             $scope.cleanall();
             $scope.subjects = data;
