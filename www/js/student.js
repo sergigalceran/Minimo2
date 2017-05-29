@@ -7,7 +7,7 @@ app.controller('StudentController', ['$scope','$http', function($scope, $http) {
 	var dir = "localhost";
 
     // Obtenemos todos los datos de la base de datos
-    $http.get('http://'+ dir +':3000/api/student').success(function (data) {
+    $http.get('http://'+ dir +':3001/api/student').success(function (data) {
             $scope.students = data;
         })
         .error(function (data) {
@@ -19,7 +19,7 @@ app.controller('StudentController', ['$scope','$http', function($scope, $http) {
 
         if (confirm("De verdad eres " + $scope.newStudent.nombre + "?"))
         {
-            $http.post('http://'+ dir +':3000/api/student', $scope.newStudent)
+            $http.post('http://'+ dir +':3001/api/student', $scope.newStudent)
                 .success(function (data) {
                     if(data==false) {
                         alert("Error al añadir alumno");
@@ -38,7 +38,7 @@ app.controller('StudentController', ['$scope','$http', function($scope, $http) {
 	//Funcion filtrar alumno
 	$scope.filterAlumn = function(res) {
 
-        $http.post('http://'+ dir +':3000/api/student', $scope.newStudent)
+        $http.post('http://'+ dir +':3001/api/student', $scope.newStudent)
             .success(function (data) {
                 if (data==false) {
                     alert("Al alumno que busca no se encuentra");
@@ -57,7 +57,7 @@ app.controller('StudentController', ['$scope','$http', function($scope, $http) {
 
     // Función para editar los datos de un estudiante
     $scope.modificarStudent = function (newStudent) {
-        $http.put('http://'+ dir +':3000/api/student/' + $scope.newStudent._id, $scope.newStudent)
+        $http.put('http://'+ dir +':3001/api/student/' + $scope.newStudent._id, $scope.newStudent)
             .success(function (data) {
                 $scope.cleanall(); // Borramos los datos del formulario
                 $scope.students = data;
@@ -70,7 +70,7 @@ app.controller('StudentController', ['$scope','$http', function($scope, $http) {
 
     // Función que borra un objeto student conocido su id
     $scope.borrarStudent = function (newStudent) {
-        $http.delete('http://'+ dir +':3000/api/student/' + $scope.newStudent._id)
+        $http.delete('http://'+ dir +':3001/api/student/' + $scope.newStudent._id)
             .success(function (data) {
                 $scope.cleanall();
                 $scope.students = data;
